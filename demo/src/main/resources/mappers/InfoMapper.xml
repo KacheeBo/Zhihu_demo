@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.InfoMapper">
+    <resultMap id="InfoMapping" type="com.example.demo.entity.Info">
+        <id column="infoid" property="infoid"/>
+        <result column="infoid" property="infoid"/>
+        <result column="name" property="name"/>
+        <result column="interest" property="interest"/>
+    </resultMap>
+    <select id="queryAll" resultMap="InfoMapping">
+        select * from info
+        where infoid=#{infoid}
+    </select>
+<!--    <insert id="updateInfo">-->
+<!--        replace into info(infoid,name,birthday,mianmao,phonenumber,address) values(#{infoid},#{name}, #{birthday},#{mianmao},#{phonenumber},#{address})-->
+<!--    </insert>-->
+
+</mapper>

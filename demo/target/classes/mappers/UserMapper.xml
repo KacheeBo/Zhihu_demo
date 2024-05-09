@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <resultMap id="UserMapping" type="com.example.demo.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+    </resultMap>
+    <select id="queryById" parameterType="com.example.demo.entity.User"
+            resultMap="UserMapping">
+        select * from user u
+        where u.username =#{username} and u.password = #{password}
+    </select>
+    <insert id="save" parameterType="com.example.demo.entity.User">
+        <selectKey keyColumn="id" keyProperty="id" order="BEFORE"
+                   resultType="int">
+            select  max(id)+1 as id from user
+        </selectKey>
+            insert into user(username,password) values (#{username},#{password})
+    </insert>
+    <select id="getUsername" parameterType="com.example.demo.entity.User"
+            resultMap="UserMapping">
+        select  * from user u
+        where u.username = #{username}
+    </select>
+</mapper>
